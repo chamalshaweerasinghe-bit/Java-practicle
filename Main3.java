@@ -1,60 +1,59 @@
-class Animal {
-    String name;
+class Employee {
 
-    void makeSound() {
-        System.out.println(name + " makes a generic sound");
+    protected int id;
+    protected String name;
+    protected double salary;
+
+    public Employee(int id,String name,double salary){
+        this.id=id;
+        this.name=name;
+        this.salary=salary;
+    }
+
+    public void calculateBonus(){
+        System.out.println("Bonus: "+salary*0.05);
     }
 }
 
-class Dog extends Animal {
-    @Override
-    void makeSound() {
-        System.out.println(name + " says: Woof!");
+
+class Manager extends Employee {
+
+    String department;
+
+    public Manager(int id,String name,double salary,String dept){
+        super(id,name,salary);
+        department=dept;
+    }
+
+    public void calculateBonus(){
+        System.out.println("Manager Bonus: "+salary*0.10);
     }
 }
 
-class Cat extends Animal {
-    @Override
-    void makeSound() {
-        System.out.println(name + " says: Meow!");
+
+class Developer extends Employee {
+
+    String programmingLanguage;
+
+    public Developer(int id,String name,double salary,String lang){
+        super(id,name,salary);
+        programmingLanguage=lang;
+    }
+
+    public void calculateBonus(){
+        System.out.println("Developer Bonus: "+salary*0.08);
     }
 }
 
-class Bird extends Animal {
-    @Override
-    void makeSound() {
-        System.out.println(name + " says: Tweet!");
-    }
-}
 
 public class Main3 {
-    public static void main(String[] args) {
 
+    public static void main(String[] args){
 
-        Dog d = new Dog();
-        d.name = "Rex";
-        d.makeSound();
+        Manager m = new Manager(1,"Sam",50000,"HR");
+        Developer d = new Developer(2,"Tom",60000,"Java");
 
-        Cat c = new Cat();
-        c.name = "Luna";
-        c.makeSound();
-
-        Bird b = new Bird();
-        b.name = "Tweety";
-        b.makeSound();
-
-     
-
-        Animal a1 = new Dog();
-        a1.name = "Bruno";
-        a1.makeSound();
-
-        Animal a2 = new Cat();
-        a2.name = "Kitty";
-        a2.makeSound();
-
-        Animal a3 = new Bird();
-        a3.name = "Sky";
-        a3.makeSound();
+        m.calculateBonus();
+        d.calculateBonus();
     }
 }

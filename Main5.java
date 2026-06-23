@@ -1,110 +1,76 @@
-class BankAccount {
+class Payment {
 
-    String accountNumber;
-    String holderName;
-    double balance;
+    protected int paymentID;
+    protected String customerName;
+    protected double amount;
 
-    void showDetails() {
-        System.out.println("Account: " + accountNumber +
-                " | Holder: " + holderName +
-                " | Balance: " + balance);
+    public Payment(int id,String name,double amount){
+        paymentID=id;
+        customerName=name;
+        this.amount=amount;
     }
 
-    void deposit(double amount) {
-        balance += amount;
-        System.out.println("Deposited " + amount +
-                ". New balance: " + balance);
-    }
-
-    void deposit(double amount, String currency) {
-
-        if (currency.equalsIgnoreCase("USD")) {
-
-            double converted = amount * 300;
-            balance += converted;
-
-            System.out.println("Deposited " + amount + " " + currency +
-                    " = LKR " + converted +
-                    ". New balance: " + balance);
-        }
+    public void processPayment(){
+        System.out.println("Processing payment");
     }
 }
 
-class SavingsAccount extends BankAccount {
 
-    double interestRate;
+class CashPayment extends Payment {
 
-    @Override
-    void showDetails() {
-        System.out.println("Account: " + accountNumber +
-                " | Holder: " + holderName +
-                " | Balance: " + balance +
-                " | Type: Savings | Rate: " + interestRate + "%");
+    public CashPayment(int id,String name,double amount){
+        super(id,name,amount);
     }
 
-    void applyInterest() {
-        balance += balance * interestRate / 100;
-
-        System.out.println("Interest applied. New balance: " + balance);
+    public void processPayment(){
+        System.out.println("Cash payment completed");
     }
 }
 
-class LoanAccount extends BankAccount {
 
-    double loanAmount;
+class CardPayment extends Payment {
 
-    @Override
-    void showDetails() {
-        System.out.println("Account: " + accountNumber +
-                " | Holder: " + holderName +
-                " | Balance: " + balance +
-                " | Type: Loan | Loan: " + loanAmount);
+    String cardNumber;
+
+    public CardPayment(int id,String name,double amount,String card){
+        super(id,name,amount);
+        cardNumber=card;
     }
 
-    void repayLoan(double amount) {
-
-        loanAmount -= amount;
-
-        System.out.println("Loan repaid: " + amount +
-                ". Remaining: " + loanAmount);
+    public void processPayment(){
+        System.out.println("Card payment completed");
     }
 }
+
+
+class OnlinePayment extends Payment {
+
+    String platform;
+
+    public OnlinePayment(int id,String name,double amount,String platform){
+        super(id,name,amount);
+        this.platform=platform;
+    }
+
+    public void processPayment(){
+        System.out.println("Online payment completed");
+    }
+}
+
 
 public class Main5 {
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
 
-  
+        Payment p;
 
-        SavingsAccount s = new SavingsAccount();
+        p = new CashPayment(1,"John",500);
+        p.processPayment();
 
-        s.accountNumber = "SA-001";
-        s.holderName = "Alice";
-        s.balance = 5000;
-        s.interestRate = 3.5;
+        p = new CardPayment(2,"Alex",1000,"1234");
+        p.processPayment();
 
-        s.showDetails();
-        s.deposit(1000);
-        s.deposit(50, "USD");
-        s.applyInterest();
-
-        System.out.println();
-
-    
-
-        BankAccount b1 = new SavingsAccount();
-
-        b1.accountNumber = "SA-001";
-        b1.holderName = "Alice";
-        b1.balance = 5000;
-
-        b1.showDetails();
-
-        BankAccount b2 = new LoanAccount();
-
-        b2.accountNumber = "LA-002";
-        b2.holderName = "Bob";
-
-        b2.showDetails();
+        p = new OnlinePayment(3,"Sam",2000,"PayPal");
+        p.processPayment();
     }
 }

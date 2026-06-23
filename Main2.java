@@ -1,30 +1,45 @@
-class Printer {
+class Vehicle {
 
-    void printData(String text) {
-        System.out.println("Printing text: " + text);
+    private int vehicleID;
+    private String brand;
+    private int speed;
+
+    public Vehicle(int id,String brand,int speed){
+        vehicleID=id;
+        this.brand=brand;
+        this.speed=speed;
     }
 
-    void printData(int number) {
-        System.out.println("Printing number: " + number);
+    public int getSpeed(){
+        return speed;
     }
 
-    void printData(String text, int copies) {
-        System.out.println("Printing " + copies + " copies of: " + text);
-    }
-
-    void printData(boolean isDuplex) {
-        System.out.println("Duplex printing: " + isDuplex);
+    public void calculateSpeed(){
+        System.out.println("Vehicle speed: " + speed);
     }
 }
 
+
+class Car extends Vehicle {
+
+    private int numberOfDoors;
+
+    public Car(int id,String brand,int speed,int doors){
+        super(id,brand,speed);
+        numberOfDoors=doors;
+    }
+
+    public void calculateSpeed(){
+        System.out.println("Car speed: " + getSpeed()+" km/h");
+    }
+}
+
+
 public class Main2 {
-    public static void main(String[] args) {
+    public static void main(String[] args){
 
-        Printer p = new Printer();
+        Vehicle v = new Car(1,"BMW",180,4);
 
-        p.printData("NSBM");
-        p.printData(100);
-        p.printData("Java Notes", 5);
-        p.printData(true);
+        v.calculateSpeed();
     }
 }

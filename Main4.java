@@ -1,83 +1,51 @@
-class Shape {
+class Person {
 
-    void draw() {
-        System.out.println("Drawing a generic shape");
-    }
+    protected int id;
+    protected String name;
 
-    void area() {
-        System.out.println("Area: 0.0");
-    }
-}
-
-class Circle extends Shape {
-    double radius;
-
-    Circle(double radius) {
-        this.radius = radius;
-    }
-
-    @Override
-    void draw() {
-        System.out.println("Drawing a Circle");
-    }
-
-    @Override
-    void area() {
-        System.out.println("Area: " + (Math.PI * radius * radius));
+    public Person(int id,String name){
+        this.id=id;
+        this.name=name;
     }
 }
 
-class Rectangle extends Shape {
-    double width, height;
 
-    Rectangle(double width, double height) {
-        this.width = width;
-        this.height = height;
-    }
+class Employee extends Person {
 
-    @Override
-    void draw() {
-        System.out.println("Drawing a Rectangle");
-    }
+    protected double salary;
 
-    @Override
-    void area() {
-        System.out.println("Area: " + (width * height));
+    public Employee(int id,String name,double salary){
+        super(id,name);
+        this.salary=salary;
     }
 }
 
-class Triangle extends Shape {
-    double base, height;
 
-    Triangle(double base, double height) {
-        this.base = base;
-        this.height = height;
+class Manager extends Employee {
+
+    String department;
+
+    public Manager(int id,String name,double salary,String dept){
+        super(id,name,salary);
+        department=dept;
     }
 
-    @Override
-    void draw() {
-        System.out.println("Drawing a Triangle");
-    }
 
-    @Override
-    void area() {
-        System.out.println("Area: " + (0.5 * base * height));
+    public void displayInfo(){
+        System.out.println("ID: "+id);
+        System.out.println("Name: "+name);
+        System.out.println("Salary: "+salary);
+        System.out.println("Department: "+department);
     }
 }
+
 
 public class Main4 {
-    public static void main(String[] args) {
 
-        Shape[] shapes = new Shape[3];
+    public static void main(String[] args){
 
-        shapes[0] = new Circle(5);
-        shapes[1] = new Rectangle(4, 6);
-        shapes[2] = new Triangle(3, 8);
+        Manager m = new Manager(1,"David",70000,"Finance");
 
-        for (Shape s : shapes) {
-            s.draw();
-            s.area();
-            System.out.println();
-        }
+        m.displayInfo();
     }
 }
