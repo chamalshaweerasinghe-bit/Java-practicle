@@ -1,24 +1,52 @@
-public class Calculator {
+class Calculator {
+    int num1;
+    int num2;
 
-    
-    public int add(int a, int b) {
-        return a + b;
+    Calculator() {
+        num1 = 10;
+        num2 = 5;
     }
 
-  
-    public int add(int a, int b, int c) {
-        return a + b + c;
+    // non para - non return type method
+    void printMag() {
+        System.out.println("Welcome to the 25.3 VU batch for the calculator");
     }
 
-    public double add(double a, double b) {
-        return a + b;
+    // non para - return type method
+    int addNumbers() {
+        int sum = num1 + num2;
+        return sum;
     }
 
+    // para - non return type method
+    void subNumber(int num1, int num2) {
+        int sub = num1 - num2;
+        System.out.println("Sub is : " + sub);
+    }
+
+    // para - return type method
+    int multiplyNumber(int num1, int num2) {
+        int mul = num1 * num2;
+        return mul;
+    }
+}
+
+// Separate main class
+class CalApp {
     public static void main(String[] args) {
-        Calculator calc = new Calculator();
 
-        System.out.println("Result of add(int, int): " + calc.add(10, 20));
-        System.out.println("Result of add(int, int, int): " + calc.add(10, 20, 30));
-        System.out.println("Result of add(double, double): " + calc.add(10.5, 20.5));
+        // create object
+        Calculator cl = new Calculator();
+
+        // call methods
+        cl.printMag();
+
+        int sum = cl.addNumbers();
+        System.out.println("Sum is : " + sum);
+
+        cl.subNumber(20, 10);
+
+        int mul = cl.multiplyNumber(50, 2);
+        System.out.println("Multiplication is : " + mul);
     }
 }
