@@ -1,21 +1,23 @@
-// UserAccount.java
-
 class UserAccount {
 
-    // Instance variables (Encapsulation using private access modifier)
+    // Private variables (Encapsulation)
     private String username;
-    private String emailAddress;
+    private String email;
     private String accountStatus;
     private int failedLoginAttempts;
     private String password;
 
     // Constructor
-    public UserAccount(String username, String emailAddress, String password) {
+    UserAccount(String username, String email,
+                String accountStatus,
+                int failedLoginAttempts,
+                String password) {
+
         this.username = username;
-        this.emailAddress = emailAddress;
+        this.email = email;
+        this.accountStatus = accountStatus;
+        this.failedLoginAttempts = failedLoginAttempts;
         this.password = password;
-        this.accountStatus = "Active";
-        this.failedLoginAttempts = 0;
     }
 
     // Getter for username
@@ -28,18 +30,18 @@ class UserAccount {
         this.username = username;
     }
 
-    // Getter for failed login attempts
+    // Getter for failed attempts
     public int getFailedLoginAttempts() {
         return failedLoginAttempts;
     }
 
-    // Setter for failed login attempts
-    public void setFailedLoginAttempts(int failedLoginAttempts) {
+    // Setter for failed attempts
+    public void setFailedLoginAttempts(int attempts) {
 
-        if (failedLoginAttempts < 0) {
-            System.out.println("Error: Failed login attempts cannot be negative.");
+        if (attempts < 0) {
+            System.out.println("Error: Negative values are not allowed.");
         } else {
-            this.failedLoginAttempts = failedLoginAttempts;
+            failedLoginAttempts = attempts;
         }
     }
 
@@ -47,28 +49,56 @@ class UserAccount {
     public void login(String enteredPassword) {
 
         if (enteredPassword.equals(password)) {
-
-            System.out.println("Login successful!");
+            System.out.println("Login Successful!");
             failedLoginAttempts = 0;
-
         } else {
-
+            System.out.println("Login Failed!");
             failedLoginAttempts++;
-            System.out.println("Login failed! Incorrect password.");
         }
     }
 
-    // Lock check method
+    // Lock check
     public void lockCheck() {
 
         if (failedLoginAttempts >= 3) {
-
             accountStatus = "Locked";
-            System.out.println("Warning: Account has been locked.");
-
+            System.out.println("WARNING: Account Locked!");
         } else {
-
-            System.out.println("Account is active.");
+            System.out.println("Account is Active.");
         }
+    }
+}
+
+public class Main2 {
+
+    public static void main(String[] args) {
+
+        // TEST FIRST
+        System.out.println("=== TESTING UserAccount ===");
+
+        UserAccount u1 = new UserAccount(
+                "admin01",
+                "admin@gmail.com",
+                "Active",
+                0,
+                "1234"
+        );
+
+        // a
+        System.out.println("Username: " + u1.getUsername());
+
+        // b
+        u1.setFailedLoginAttempts(-5);
+
+        // c
+        u1.login("1234");
+        u1.lockCheck();
+
+        // d
+        u1.login("1111");
+        u1.login("2222");
+        u1.login("3333");
+
+        u1.lockCheck();
     }
 }

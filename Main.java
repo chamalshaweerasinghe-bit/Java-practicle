@@ -1,19 +1,48 @@
-// Main.java
-
 public class Main {
 
     public static void main(String[] args) {
 
-        // Creating object
-        ThreatLog t1 = new ThreatLog(91, 55, 38, 74, 62);
+        // Create objects
+        LibraryBook b1 =
+        new LibraryBook();
 
-        // Calling printReport method
-        t1.printReport();
+        LibraryBook b2 =
+        new LibraryBook(101,
+        "Java Programming",
+        "James Gosling",
+        5);
 
-        // Calling getHighestThreat method
-        System.out.println("\nHighest Threat Score: " + t1.getHighestThreat());
+        // Print initial info
+        System.out.println(
+        b2.getBookInfo("A1"));
 
-        // Calling countCritical method
-        System.out.println("Critical Threat Count: " + t1.countCritical());
+        System.out.println("----------------");
+
+        // Borrow books
+        System.out.println(
+        b2.borrowBook(2));
+
+        System.out.println("----------------");
+
+        // Try borrowing more than available
+        System.out.println(
+        b2.borrowBook(5));
+
+        System.out.println("----------------");
+
+        // Return books
+        b2.returnBook(1);
+
+        System.out.println("----------------");
+
+        // Borrow again
+        System.out.println(
+        b2.borrowBook(2));
+
+        System.out.println("----------------");
+
+        // Final info
+        System.out.println(
+        b2.getBookInfo("A1"));
     }
 }
