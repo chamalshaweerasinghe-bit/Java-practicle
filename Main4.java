@@ -1,45 +1,83 @@
-class Vehicle {
-    String make;
-    int speed;
+class Shape {
 
-    void move() {
-        System.out.println(make + " is moving at " + speed + " km/h");
+    void draw() {
+        System.out.println("Drawing a generic shape");
+    }
+
+    void area() {
+        System.out.println("Area: 0.0");
     }
 }
 
-class ElectricVehicle extends Vehicle {
-    int batteryLevel;
+class Circle extends Shape {
+    double radius;
 
-    void chargeBattery() {
-        batteryLevel = 100;
-        System.out.println(make + " battery fully charged.");
+    Circle(double radius) {
+        this.radius = radius;
     }
 
-    void showBattery() {
-        System.out.println("Battery: " + batteryLevel + "%");
+    @Override
+    void draw() {
+        System.out.println("Drawing a Circle");
+    }
+
+    @Override
+    void area() {
+        System.out.println("Area: " + (Math.PI * radius * radius));
     }
 }
 
-class AutonomousVehicle extends ElectricVehicle {
-    boolean autopilotEnabled;
+class Rectangle extends Shape {
+    double width, height;
 
-    void enableAutopilot() {
-        autopilotEnabled = true;
-        System.out.println("Autopilot ON for " + make);
+    Rectangle(double width, double height) {
+        this.width = width;
+        this.height = height;
+    }
+
+    @Override
+    void draw() {
+        System.out.println("Drawing a Rectangle");
+    }
+
+    @Override
+    void area() {
+        System.out.println("Area: " + (width * height));
+    }
+}
+
+class Triangle extends Shape {
+    double base, height;
+
+    Triangle(double base, double height) {
+        this.base = base;
+        this.height = height;
+    }
+
+    @Override
+    void draw() {
+        System.out.println("Drawing a Triangle");
+    }
+
+    @Override
+    void area() {
+        System.out.println("Area: " + (0.5 * base * height));
     }
 }
 
 public class Main4 {
     public static void main(String[] args) {
-        AutonomousVehicle av = new AutonomousVehicle();
 
-        av.make = "Tesla";
-        av.speed = 120;
-        av.batteryLevel = 45;
+        Shape[] shapes = new Shape[3];
 
-        av.move();
-        av.showBattery();
-        av.chargeBattery();
-        av.enableAutopilot();
+        shapes[0] = new Circle(5);
+        shapes[1] = new Rectangle(4, 6);
+        shapes[2] = new Triangle(3, 8);
+
+        for (Shape s : shapes) {
+            s.draw();
+            s.area();
+            System.out.println();
+        }
     }
 }

@@ -1,41 +1,38 @@
-class Device {
-    String brand;
-    String model;
-    boolean isOn;
+class Calculator {
 
-    void turnOn() {
-        isOn = true;
-        System.out.println(brand + " " + model + " is now ON.");
+    int add(int a, int b) {
+        int result = a + b;
+        System.out.println("Int sum: " + result);
+        return result;
     }
 
-    void turnOff() {
-        isOn = false;
-        System.out.println(brand + " " + model + " is now OFF.");
+    double add(double a, double b) {
+        double result = a + b;
+        System.out.println("Double sum: " + result);
+        return result;
     }
 
-    
+    int add(int a, int b, int c) {
+        int result = a + b + c;
+        System.out.println("Three-int sum: " + result);
+        return result;
+    }
 
-    
-}
-
-class SmartDevice extends Device {
-    String appName;
-
-    void connectToApp() {
-        System.out.println(brand + " connected to " + appName);
+    String add(String a, String b) {
+        String result = a + b;
+        System.out.println("String join: " + result);
+        return result;
     }
 }
 
 public class Main {
     public static void main(String[] args) {
-        SmartDevice SD = new SmartDevice();
-        SD.brand = "Samsung";
-        SD.model = "Galaxy S24";
-        SD.appName = "SmartThings";
 
-        SD.turnOn();
-        SD.connectToApp();
-        SD.turnOff();
+        Calculator c = new Calculator();
 
+        c.add(10, 20);
+        c.add(10.5, 5.5);
+        c.add(10, 20, 30);
+        c.add("Hello ", "World");
     }
 }

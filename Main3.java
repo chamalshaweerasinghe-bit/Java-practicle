@@ -1,42 +1,60 @@
-class Person {
+class Animal {
     String name;
-    int age;
 
-    void introduce() {
-        System.out.println("Hi, I am " + name + " and I am " + age + " years old.");
+    void makeSound() {
+        System.out.println(name + " makes a generic sound");
     }
 }
 
-class Employee extends Person {
-    String employeeId;
-    String department;
-
-    void showEmployeeInfo() {
-        System.out.println("Employee " + employeeId + " works in " + department);
+class Dog extends Animal {
+    @Override
+    void makeSound() {
+        System.out.println(name + " says: Woof!");
     }
 }
 
-class SecurityAnalyst extends Employee {
-    int clearanceLevel;
+class Cat extends Animal {
+    @Override
+    void makeSound() {
+        System.out.println(name + " says: Meow!");
+    }
+}
 
-    void analyzeThreats() {
-        System.out.println("Analyst " + name + 
-        " is analysing threats at clearance level " + clearanceLevel);
+class Bird extends Animal {
+    @Override
+    void makeSound() {
+        System.out.println(name + " says: Tweet!");
     }
 }
 
 public class Main3 {
     public static void main(String[] args) {
-        SecurityAnalyst sa = new SecurityAnalyst();
 
-        sa.name = "Diana";
-        sa.age = 29;
-        sa.employeeId = "SA-201";
-        sa.department = "SOC";
-        sa.clearanceLevel = 3;
 
-        sa.introduce();
-        sa.showEmployeeInfo();
-        sa.analyzeThreats();
+        Dog d = new Dog();
+        d.name = "Rex";
+        d.makeSound();
+
+        Cat c = new Cat();
+        c.name = "Luna";
+        c.makeSound();
+
+        Bird b = new Bird();
+        b.name = "Tweety";
+        b.makeSound();
+
+     
+
+        Animal a1 = new Dog();
+        a1.name = "Bruno";
+        a1.makeSound();
+
+        Animal a2 = new Cat();
+        a2.name = "Kitty";
+        a2.makeSound();
+
+        Animal a3 = new Bird();
+        a3.name = "Sky";
+        a3.makeSound();
     }
 }
